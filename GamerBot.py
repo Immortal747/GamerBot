@@ -1,4 +1,4 @@
-import discord.py
+import discord
 from discord.ext import commands
 
 token = open("token.txt", "r").read()
@@ -22,7 +22,7 @@ async def on_message(message):
         await message.channel.send(f'Pong! {round(client.latency * 1000)}ms')
 
     if begins(text, 'find '):
-        tokens[] = text.split()
+        tokens = text.split()
         member = discord.utils.find(lambda m: m.name == tokens[1], channel.guild.members)
 
 
