@@ -41,7 +41,7 @@ async def on_message(message):
         await message.channel.send('You suck vincent and mihir imagine being in software pleb')
     if begins(message, 'rhino'):
         await message.channel.send(' SMACK zZz :pinched_fingers: :pinched_fingers: :pinched_fingers:')
-    if begins(message, 'conlin):
+    if begins(message, 'conlin'):
         await message.channel.send('conlin is always daddy')
 
     if begins(message, 'dice'):
