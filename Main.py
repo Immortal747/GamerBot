@@ -6,7 +6,7 @@ import random
 
 token = open("token.txt", "r").read()
 
-PREFIX = '~g '
+PREFIX = '-g '
 
 client = commands.Bot(command_prefix = PREFIX)
 
