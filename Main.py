@@ -53,7 +53,7 @@ async def on_message(message):
         words = message.content.split()
         await message.channel.send('https://www.chess.com/play/'+words[2])
     if begins(message, 'daddy'):
-        await message.channel.send('DADDDY RYAANNNNNN :hot_face: :hot_face: :hot_face: ')
+        await message.channel.send('DADDDY RYAANNNNNN :hot_face: :hot_face: :hot_face: https://tenor.com/view/ryan-reynolds-kiss-handsome-smile-gif-17092194 ')
     if begins(message, 'you-suck'):
         await message.channel.send('You suck vincent and mihir imagine being in software pleb')
     if begins(message, 'rhino'):
