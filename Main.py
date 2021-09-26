@@ -6,7 +6,7 @@ import random
 
 token = open("token.txt", "r").read()
 
-PREFIX = '-g '
+PREFIX = '~g '
 
 client = commands.Bot(command_prefix = PREFIX)
 
@@ -66,6 +66,8 @@ async def on_message(message):
         await message.channel.send('https://tenor.com/IRyK.gif')
     if begins(message, 'cap'):
         await message.channel.send('https://tenor.com/boU4B.gif')
+    if begins(message, 'attack' + discord.Member):
+        await (message.channel.send('@'+message.author.name + " just attacked @"+discord.Member)
 
     await client.process_commands(message)
 
