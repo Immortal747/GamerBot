@@ -53,7 +53,8 @@ async def on_message(message):
         words = message.content.split()
         await message.channel.send('https://www.chess.com/play/'+words[2])
     if begins(message, 'daddy'):
-        await message.channel.send('DADDDY RYAANNNNNN :hot_face: :hot_face: :hot_face: ')
+        await message.channel.send('DADDDY RYAANNNNNN :hot_face: :hot_face: :hot_face:')
+        await message.channel.send('https://tenor.com/view/ryan-reynolds-kiss-handsome-smile-gif-17092194')
     if begins(message, 'you-suck'):
         await message.channel.send('You suck vincent and mihir imagine being in software pleb')
     if begins(message, 'rhino'):
@@ -79,9 +80,14 @@ async def cnick(ctx, member: discord.Member, new_name):
             i = len(roles)
     
     if mod or ctx.message.author.id == member.id:
-        await ctx.send("Changed nickname: "+member.nick+" to "+new_name)
+        await ctx.send("Changed nickname: "+member.name+" to "+new_name)
         await member.edit(nick = new_name)
     else:
         await ctx.send("Need to be mod! Otherwise, you can only change your own name!")
+
+@client.command(pass_context=True)
+async def attack(ctx, member: discord.Member):
+    await ctx.send(member.mention)
+    await ctx.send("Just attacked "+member.name)
 
 client.run(token)
