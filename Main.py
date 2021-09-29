@@ -67,6 +67,18 @@ async def on_message(message):
         await message.channel.send('https://tenor.com/IRyK.gif')
     if begins(message, 'cap'):
         await message.channel.send('https://tenor.com/boU4B.gif')
+    if begins(message, 'im bored'):
+        await message.channel.send("What game would you like to play 1: Krunker 2: Ping Everyone 3: IDRC. (type in chat)
+        if begins(message, '1'):
+            await.message.channel.send('krunker.io')
+        elif begins(message, '2'):
+            await.message.channel.send(' Prepare for downfall' everyone.menition)
+        elif begins(message, '3'):
+            await.message.channel.send('OK goodbye')
+        else:
+            await.message.channel.send('You failed too bad try again')                           
+                                   
+                                  
 
     await client.process_commands(message)
 
