@@ -5,13 +5,27 @@ from URLReader import URLReader
 import random
 
 token = open("token.txt", "r").read()
+channel_log_id = open("channel_log.txt", "r").read()
 
-PREFIX = '-g '
+PREFIX = '>'
 
 client = commands.Bot(command_prefix = PREFIX)
 
+dms = []
+channels = []
+
 def begins(text, start):
     return text.content.lower().startswith(PREFIX+start)
+
+def begins_np(text, start, prefix):
+    return text.content.lower().startswith(prefix+start)
+
+def find_dms(name):
+    for i in range(0, len(dms)):
+        if name == dms[i]:
+            return i
+
+    return -1
 
 @client.event
 async def on_ready():
@@ -19,6 +33,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    global dms
 
     #essential commands (don't alter)
 
@@ -63,10 +78,22 @@ async def on_message(message):
         await message.channel.send('conlin is always daddy')
     if begins(message, 'carl-bot'):
         await message.channel.send('Carl-Bot is trash, Gamer-Bot is the future!')
-    if begins(message, 'roasted'):
+    if begins(message, 'burnt') or begins(message, 'roasted'):
         await message.channel.send('https://tenor.com/IRyK.gif')
     if begins(message, 'cap'):
         await message.channel.send('https://tenor.com/boU4B.gif')
+    if begins(message, 'fun times'):
+        await message.channel.send('https://tenor.com/bB7t6.gif')
+
+    #Reads dms then sends it to the given channel, only sends back to log if this is the first reply from that user
+    #To get to gamer logs
+    #channel = client.get_channel(int(channel_log_id))
+    rank = find_dms(message.author.name)
+    if message.guild is None and message.author != client.user and rank>-1:
+        dms.pop(rank)
+        channel = channels[rank]
+        await channel.send(message.author.mention+' just sent: "'+message.content+'"')
+        channels.pop(rank)
 
     await client.process_commands(message)
 
@@ -89,5 +116,20 @@ async def cnick(ctx, member: discord.Member, new_name):
 async def attack(ctx, member: discord.Member):
     await ctx.send(member.mention)
     await ctx.send("Just attacked "+member.name)
+
+@client.command(pass_context=True)
+async def dm(ctx, user : discord.User, *, msg):
+    global dms
+
+    dms.append(user.name)
+    channels.append(ctx.message.channel)
+    
+    try:
+        await user.send(msg)
+        await ctx.send(f'Your Message has been sent')
+    except:
+        await user.create_dm()
+        await user.send(msg)
+        await ctx.send(f'A new dm has been created and your Message has been sent')
 
 client.run(token)
